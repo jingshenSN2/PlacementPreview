@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "slabhelper",
+  "version": "0.3.0",
+
+  "name": "Slab Helper",
+  "description": "Deal with slab!",
+  "authors": [
+    "SN2"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/jingshenSN2"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/slabhelper/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "sn2.slabhelper.SlabHelper"
+    ]
+  },
+  "mixins": [
+    "slabhelper.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

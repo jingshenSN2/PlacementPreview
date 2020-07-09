@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:cobblestone_slab"
+    },
+	"S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "slabhelper:slab_pickaxe",
+    "count": 1
+  }
+}
