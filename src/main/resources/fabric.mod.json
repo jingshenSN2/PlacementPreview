@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "slabhelper",
-  "version": "1.0.0",
+  "version": "1.0.1",
 
   "name": "Slab Helper",
   "description": "Deal with slab!",
@@ -13,7 +13,7 @@
     "sources": "https://github.com/jingshenSN2"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/slabhelper/icon.png",
 
   "environment": "*",
