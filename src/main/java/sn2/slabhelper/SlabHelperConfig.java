@@ -18,6 +18,9 @@ public class SlabHelperConfig {
 	@Config(category = "function", key = "Slab Pickaxe In Creative", comment = "Not done yet.")
 	public static boolean usePickaxeOnlySurvivalMode = false;
 	
+	@Config(category = "function", key = "Half mining", comment = "Disable this if you want that common tools(like stone pickaxe, diamond axe, etc.) can half-mine the full slab.")
+	public static boolean needSlabPickaxe = true;
+	
 	@Config(category = "render", key = "Additional Line for Double Slab", comment = "Disable this if you dont want additional lines on the double slab.")
 	public static boolean renderAdditionalEdges = true;
 }

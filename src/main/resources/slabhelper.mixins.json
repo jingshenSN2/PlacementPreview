@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BlockMixin";
-    "SlabBlockMixin"
+    "SlabBlockMixin";
+	"MiningToolItemMixin"
   ],
   "client": [
   ],
