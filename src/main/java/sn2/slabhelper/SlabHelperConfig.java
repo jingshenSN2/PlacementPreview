@@ -7,7 +7,7 @@ public class SlabHelperConfig {
 	public static boolean enableHooker = true;
 
 	@Config(category = "item", key = "Slab Pickaxe", comment = "Disable this if you dont want slab pickaxe.")
-	public static boolean enablePickaxe = true;
+	public static boolean enablePickaxe = false;
 
 	@Config(category = "durability", key = "Slab Hooker Max Durability", comment = "Set as 0 to disable comsuming durability.")
 	public static int hookerDurability = 64;
