@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import sn2.slabhelper.callbacks.ClientStartCallback;
-
 public class VersionCheck {
 	public static String check() {
 		URL updateURL = null;
