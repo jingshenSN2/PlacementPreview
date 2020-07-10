@@ -17,6 +17,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import sn2.slabhelper.SlabHelperConfig;
+import sn2.slabhelper.VersionCheck;
 import sn2.slabhelper.item.ItemSlabPickaxe;
 
 public class CallbackRegistry {

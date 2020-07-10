@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import sn2.slabhelper.callbacks.ClientStartCallback;
+
 public class VersionCheck {
-	public static void check() {
+	public static String check() {
 		URL updateURL = null;
 		BufferedReader in = null;
 		String version = "";
@@ -24,7 +26,10 @@ public class VersionCheck {
 			}
 		}
 		if (!version.equals(SlabHelper.VERSION)) {
-			SlabHelper.LOGGER.info("Update " + version + " found! Download the latest version at https://www.curseforge.com/minecraft/mc-mods/slab-helper");
+			String update = "Update " + version + " found! Download the latest version at https://www.curseforge.com/minecraft/mc-mods/slab-helper";
+			SlabHelper.LOGGER.info(update);
+			return update;
 		} 
+		return null;
 	}
 }
