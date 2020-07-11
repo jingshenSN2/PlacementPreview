@@ -32,6 +32,7 @@ public class ItemSlabHooker extends Item{
 	
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
+		// exceptions
 		World world = context.getWorld();
 		if (world.isClient)
 			return ActionResult.PASS;
@@ -42,19 +43,18 @@ public class ItemSlabHooker extends Item{
 		BlockState state = world.getBlockState(pos);
 		if (!(state.getBlock() instanceof SlabBlock)) 
 			return ActionResult.PASS;
-		//System.out.println("slab!");
 		if (state.get(SlabBlock.TYPE) == SlabType.DOUBLE)
 			return ActionResult.PASS;
-		//System.out.println("half slab!");
+		// change the state
 		if (state.get(SlabBlock.TYPE) == SlabType.TOP)
 			world.setBlockState(pos, state.with(SlabBlock.TYPE, SlabType.BOTTOM));
 		if (state.get(SlabBlock.TYPE) == SlabType.BOTTOM)
 			world.setBlockState(pos, state.with(SlabBlock.TYPE, SlabType.TOP));
+		// damage item
 	    player.addExhaustion(0.005F);
 		context.getStack().damage(1, (LivingEntity)player, ((e) -> {
 	         e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
 	      }));
-		//System.out.println(world.getBlockState(pos).get(SlabBlock.TYPE));
 		return ActionResult.PASS;
 	}
 }

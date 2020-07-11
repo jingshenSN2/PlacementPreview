@@ -11,13 +11,9 @@ public class ItemRegistry {
 	
 	public static final Item SLAB_HOOKER = new ItemSlabHooker(
 			new Item.Settings().maxCount(1).maxDamageIfAbsent(SlabHelperConfig.hookerDurability).group(ItemGroup.TOOLS));
-	public static final Item SLAB_PICKAXE = new ItemSlabPickaxe(new Item.Settings().maxCount(1).group(ItemGroup.TOOLS));
 	
 	public static void init() {
 		if (SlabHelperConfig.enableHooker)
 			Registry.register(Registry.ITEM, new Identifier(SlabHelper.MODID, "slab_hooker"), SLAB_HOOKER);
-
-		if (SlabHelperConfig.enablePickaxe)
-		Registry.register(Registry.ITEM, new Identifier(SlabHelper.MODID, "slab_pickaxe"), SLAB_PICKAXE);
 	}
 }

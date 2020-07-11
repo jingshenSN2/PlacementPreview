@@ -9,6 +9,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Config {
 
+	// COPY from TechReborn github
+	
 	/**
 	 * This the category of the config
 	 *

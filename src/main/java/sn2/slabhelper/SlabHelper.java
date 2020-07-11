@@ -11,14 +11,19 @@ import sn2.slabhelper.item.ItemRegistry;
 public class SlabHelper implements ModInitializer {
 	
 	public static final String MODID = "slabhelper";
-	public static final String VERSION = "1.1.1";
+	public static final String VERSION = "1.2.0";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 	
 	@Override
 	public void onInitialize() {
 		new ConfigHandler(SlabHelperConfig.class, MODID);
+		// check update
 		VersionCheck.check();
+		// register item
 		ItemRegistry.init();
+		// register key binding
+		SlabHelperKey.init();
+		// register events
 		CallbackRegistry.init();
 		LOGGER.info("Slab Helper initialized");
 	}

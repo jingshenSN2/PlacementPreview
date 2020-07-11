@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigHandler {
+	// COPY from TechReborn github
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 	
 	private final Class clazz;

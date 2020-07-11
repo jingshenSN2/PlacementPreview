@@ -1,6 +1,6 @@
 {
   "item.slabhelper.slab_hooker": "Slab Hooker",
   "item.slabhelper.slab_hooker.tooltip": "Right Click to Change the Slab State",
-  "item.slabhelper.slab_pickaxe": "Slab Pickaxe",
-  "item.slabhelper.slab_pickaxe.tooltip": "ONLY HALF!"
+  "category.slabhelper.key": "Slab Helper",
+  "key.slabhelper.halfmine": "Half Mine"
 }

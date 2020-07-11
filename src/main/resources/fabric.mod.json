@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "slabhelper",
-  "version": "1.1.1",
+  "version": "${version}",
 
   "name": "Slab Helper",
   "description": "Deal with slab!",
@@ -9,7 +9,7 @@
     "SN2"
   ],
   "contact": {
-    "homepage": "",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/slab-helper",
     "sources": "https://github.com/jingshenSN2"
   },
 

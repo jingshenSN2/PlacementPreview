@@ -14,6 +14,7 @@ public class VersionCheck {
 			in = new BufferedReader(new InputStreamReader(updateURL.openStream()));
 			version = in.readLine();
 		} catch (Exception e) {
+			// fail to connect
 			SlabHelper.LOGGER.info("Fail to check update! Please check your network connection.");
 		} finally {
 			if (in != null) {
@@ -23,11 +24,12 @@ public class VersionCheck {
 				}
 			}
 		}
+		// need update
 		if (!version.equals(SlabHelper.VERSION)) {
 			String update = "Update " + version + " found! Download the latest version at https://www.curseforge.com/minecraft/mc-mods/slab-helper";
 			SlabHelper.LOGGER.info(update);
 			return update;
 		} 
-		return null;
+		return "";
 	}
 }
