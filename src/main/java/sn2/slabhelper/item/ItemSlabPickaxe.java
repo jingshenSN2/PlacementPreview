@@ -41,7 +41,7 @@ public class ItemSlabPickaxe extends PickaxeItem {
 		if (world.isClient)
 			return true;
 		PlayerEntity player = (PlayerEntity) miner;
-		if (SlabHelperConfig.usePickaxeOnlySurvivalMode && player.isCreative())
+		if (player.isCreative())
 			return true;
 		if (!(state.getBlock() instanceof SlabBlock)) 
 			return true;

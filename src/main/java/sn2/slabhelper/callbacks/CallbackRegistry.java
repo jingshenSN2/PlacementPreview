@@ -17,7 +17,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import sn2.slabhelper.SlabHelperConfig;
-import sn2.slabhelper.VersionCheck;
 import sn2.slabhelper.item.ItemSlabPickaxe;
 
 public class CallbackRegistry {
@@ -31,26 +30,25 @@ public class CallbackRegistry {
 				return new TypedActionResult<>(ActionResult.FAIL, shape);
 			});
 		
-		if (SlabHelperConfig.enablePickaxe) {
-			BlockBreakCallback.EVENT.register((world, player, pos, state, blockEntity, stack) -> {
-				if (world.isClient)
-					return ActionResult.PASS;
-				if (player.isCreative())
-					return ActionResult.PASS;
-				if (SlabHelperConfig.needSlabPickaxe && !(stack.getItem() instanceof ItemSlabPickaxe)) 
-					return ActionResult.PASS;
-				if (!(state.getBlock() instanceof SlabBlock)) 
-					return ActionResult.PASS;
-				if (state.get(SlabBlock.TYPE) != SlabType.DOUBLE)
-					return ActionResult.PASS;
-				BlockState halfSlab = state.with(SlabBlock.TYPE, SlabType.TOP);
-				player.incrementStat(Stats.MINED.getOrCreateStat(halfSlab.getBlock()));
-			    player.addExhaustion(0.005F);
-			    Block.dropStacks(halfSlab, world, pos, blockEntity, player, stack);
-				return ActionResult.FAIL;
-			});
-		}
-		if (!SlabHelperConfig.needSlabPickaxe) {
+		BlockBreakCallback.EVENT.register((world, player, pos, state, blockEntity, stack) -> {
+			if (world.isClient)
+				return ActionResult.PASS;
+			if (player.isCreative())
+				return ActionResult.PASS;
+			if (!SlabHelperConfig.universalHalfmining && !(stack.getItem() instanceof ItemSlabPickaxe)) 
+				return ActionResult.PASS;
+			if (!(state.getBlock() instanceof SlabBlock)) 
+				return ActionResult.PASS;
+			if (state.get(SlabBlock.TYPE) != SlabType.DOUBLE)
+				return ActionResult.PASS;
+			BlockState halfSlab = state.with(SlabBlock.TYPE, SlabType.TOP);
+			player.incrementStat(Stats.MINED.getOrCreateStat(halfSlab.getBlock()));
+		    player.addExhaustion(0.005F);
+		    Block.dropStacks(halfSlab, world, pos, blockEntity, player, stack);
+			return ActionResult.FAIL;
+		});
+		
+		if (SlabHelperConfig.universalHalfmining) {
 			MineSlabCallback.EVENT.register((stack, world, state, pos, miner) -> {
 				if (world.isClient)
 					return new TypedActionResult<>(ActionResult.PASS, true);
