@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "sn2.slabhelper.SlabHelper"
+    ],
+    "client": [
+      "sn2.slabhelper.ClientSlabHelper"
     ]
   },
   "mixins": [

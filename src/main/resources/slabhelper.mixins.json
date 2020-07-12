@@ -4,9 +4,8 @@
   "package": "sn2.slabhelper.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BlockMixin";
     "SlabBlockMixin";
-	"MiningToolItemMixin"
+	"PlayerManagerMixin"
   ],
   "client": [
   ],

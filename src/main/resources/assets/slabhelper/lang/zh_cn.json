@@ -2,5 +2,7 @@
   "item.slabhelper.slab_hooker": "半砖钩",
   "item.slabhelper.slab_hooker.tooltip": "右键改变半砖状态",
   "category.slabhelper.key": "半砖小帮手",
-  "key.slabhelper.halfmine": "只挖一半"
+  "key.slabhelper.halfmine": "只挖一半",
+  "message.player.update": "[半砖小帮手] 发现新版本v%s ！",
+  "message.player.halfmine": "[半砖小帮手] 只挖一半 %s"
 }
