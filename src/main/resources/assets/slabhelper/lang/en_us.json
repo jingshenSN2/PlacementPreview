@@ -3,7 +3,10 @@
   "item.slabhelper.slab_hooker.tooltip": "Right Click to Change the Slab State",
   "category.slabhelper.key": "Slab Helper",
   "key.slabhelper.halfmine": "Half Mine",
-  "message.player.update": "[SlabHelper] update %s found!",
-  "message.player.halfmine": "[SlabHelper] Half-Mine %s"
+  "message.player.update": "[SlabHelper] Update%s found! Click [%s] to check.",
+  "message.player.update.here": "HERE",
+  "message.player.halfmine": "[SlabHelper] Half-Mine Mode %s",
+  "message.player.halfmine.on": "ON",
+  "message.player.halfmine.off": "OFF"
 
 }

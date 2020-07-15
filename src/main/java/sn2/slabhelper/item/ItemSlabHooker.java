@@ -16,6 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import sn2.slabhelper.SlabHelperConfig;
 
@@ -48,8 +49,13 @@ public class ItemSlabHooker extends Item{
 		// change the state
 		if (state.get(SlabBlock.TYPE) == SlabType.TOP)
 			world.setBlockState(pos, state.with(SlabBlock.TYPE, SlabType.BOTTOM));
-		if (state.get(SlabBlock.TYPE) == SlabType.BOTTOM)
+		if (state.get(SlabBlock.TYPE) == SlabType.BOTTOM) {
+			if (player.getBlockPos().equals(pos)) { // player stand on the slab
+				player.setBoundingBox(player.getBoundingBox().offset(new Vec3d(0, 0.5, 0)));
+				player.moveToBoundingBoxCenter();
+			}
 			world.setBlockState(pos, state.with(SlabBlock.TYPE, SlabType.TOP));
+		}
 		// damage item
 	    player.addExhaustion(0.005F);
 		context.getStack().damage(1, (LivingEntity)player, ((e) -> {
