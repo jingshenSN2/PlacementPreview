@@ -4,11 +4,13 @@
   "package": "sn2.slabhelper.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "SlabBlockMixin";
 	"PlayerManagerMixin";
 	"ServerPlayerInteractionManagerMixin"
   ],
   "client": [
+    "SlabBlockMixin";
+	"BlockRenderManagerMixin";
+	"ClientPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

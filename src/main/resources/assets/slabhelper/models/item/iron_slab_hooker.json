@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "slabhelper:item/slab_hooker"
+    "layer0": "slabhelper:item/iron_slab_hooker"
   }
 }

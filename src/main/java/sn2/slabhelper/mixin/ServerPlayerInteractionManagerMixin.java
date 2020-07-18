@@ -18,7 +18,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameMode;
 import sn2.slabhelper.SlabHelper;
-import sn2.slabhelper.SlabHelperConfig;
+import sn2.slabhelper.config.SlabHelperConfig;
 import sn2.slabhelper.util.MathUtils;
 
 @Mixin(ServerPlayerInteractionManager.class)

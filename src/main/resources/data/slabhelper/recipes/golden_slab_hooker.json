@@ -7,14 +7,14 @@
   ],
   "key": {
     "F": {
-      "item": "minecraft:cobblestone_slab"
+      "item": "minecraft:gold_ingot"
     },
 	"S": {
       "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "slabhelper:slab_hooker",
+    "item": "slabhelper:golden_slab_hooker",
     "count": 1
   }
 }

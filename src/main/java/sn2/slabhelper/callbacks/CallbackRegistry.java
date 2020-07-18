@@ -10,11 +10,11 @@ public class CallbackRegistry {
 			boolean enable = SlabHelper.getHalfMineStatus(packetContext.getPlayer());
 			if (enable == false) {
 				SlabHelper.setHalfMineStatus(packetContext.getPlayer(), true);
-				SlabHelper.LOGGER.info(packetContext.getPlayer().getDisplayName() + "enable Half-Mime mode");
+				SlabHelper.LOGGER.info(packetContext.getPlayer().getEntityName() + " enable Half-Mime mode");
 			}
 			else {
 				SlabHelper.setHalfMineStatus(packetContext.getPlayer(), false);
-				SlabHelper.LOGGER.info(packetContext.getPlayer().getDisplayName() + "disable Half-Mime mode");
+				SlabHelper.LOGGER.info(packetContext.getPlayer().getEntityName() + " disable Half-Mime mode");
 			}
 		});
 		
