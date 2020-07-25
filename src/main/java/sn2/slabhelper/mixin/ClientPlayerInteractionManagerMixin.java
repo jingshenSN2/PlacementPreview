@@ -24,10 +24,11 @@ public class ClientPlayerInteractionManagerMixin {
 	@Shadow
 	private MinecraftClient client;
 
-	@Inject(method = "attackBlock", at = @At(value = "RETURN", ordinal = 2) )
+	@Inject(method = "attackBlock", at = @At(value = "RETURN", ordinal = 2))
 	public void onAttackBlock(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> info) {
 		BlockState origin = client.world.getBlockState(pos);
-		if (ClientSlabHelper.isHalfMine() && origin.getBlock() instanceof SlabBlock && origin.get(SlabBlock.TYPE) == SlabType.DOUBLE) {
+		if (ClientSlabHelper.isHalfMine() && origin.getBlock() instanceof SlabBlock
+				&& origin.get(SlabBlock.TYPE) == SlabType.DOUBLE) {
 			BlockState state = MathUtils.getNewState(pos, client.player, origin);
 			if (state.get(SlabBlock.TYPE) == SlabType.TOP)
 				ClientSlabHelper.setDamageRender(pos, SlabType.BOTTOM);

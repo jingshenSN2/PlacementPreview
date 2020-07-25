@@ -30,43 +30,42 @@ public class ServerPlayerInteractionManagerMixin {
 	public ServerPlayerEntity player;
 	@Shadow
 	private GameMode gameMode;
-	
-	@Inject(method = "tryBreakBlock", at = @At("HEAD"), cancellable = true) 
+
+	@Inject(method = "tryBreakBlock", at = @At("HEAD"), cancellable = true)
 	public void tryBreak(BlockPos pos, CallbackInfoReturnable<Boolean> info) {
-	      BlockState blockState = this.world.getBlockState(pos);
-	      if (!this.player.getMainHandStack().getItem().canMine(blockState, this.world, pos, this.player)) 
-	          return;
-	      if (blockState.getBlock() instanceof SlabBlock && SlabHelperConfig.halfmining 
-	    		  && blockState.get(SlabBlock.TYPE) == SlabType.DOUBLE && SlabHelper.getHalfMineStatus(this.player)) {
-	    	  BlockEntity blockEntity = this.world.getBlockEntity(pos);
-	          Block block = blockState.getBlock();
-	          if (this.player.isBlockBreakingRestricted(this.world, pos, this.gameMode))
-	             return;
-	          else {
-	             block.onBreak(this.world, pos, blockState, this.player);
-	             boolean bl = this.world.removeBlock(pos, false);
-	             if (bl) {
-	                block.onBroken(this.world, pos, blockState);
-	             }
-	             BlockState newState = MathUtils.getNewState(pos, player, blockState); // get the state after half-mining
-	             this.world.setBlockState(pos, newState);
-	             if (player.isCreative()) {
-		            info.setReturnValue(true);
-	                return;
-	             } else {
-	                ItemStack itemStack = this.player.getMainHandStack();
-	                ItemStack itemStack2 = itemStack.copy();
-	                boolean bl2 = this.player.isUsingEffectiveTool(blockState);
-	                itemStack.postMine(this.world, blockState, pos, this.player);
-	                if (bl && bl2) {
-	                   block.afterBreak(this.world, this.player, pos, newState, blockEntity, itemStack2);
-	                }
-	                info.setReturnValue(true);
-	                return;
-	             }
-	          }
-	      }
+		BlockState blockState = this.world.getBlockState(pos);
+		if (!this.player.getMainHandStack().getItem().canMine(blockState, this.world, pos, this.player))
+			return;
+		if (blockState.getBlock() instanceof SlabBlock && SlabHelperConfig.halfmining
+				&& blockState.get(SlabBlock.TYPE) == SlabType.DOUBLE && SlabHelper.getHalfMineStatus(this.player)) {
+			BlockEntity blockEntity = this.world.getBlockEntity(pos);
+			Block block = blockState.getBlock();
+			if (this.player.isBlockBreakingRestricted(this.world, pos, this.gameMode))
+				return;
+			else {
+				block.onBreak(this.world, pos, blockState, this.player);
+				/*
+				 * boolean bl = this.world.removeBlock(pos, false); if (bl) {
+				 * block.onBroken(this.world, pos, blockState); }
+				 */
+				BlockState newState = MathUtils.getNewState(pos, player, blockState); // get the state after half-mining
+				this.world.setBlockState(pos, newState);
+				if (player.isCreative()) {
+					info.setReturnValue(true);
+					return;
+				} else {
+					ItemStack itemStack = this.player.getMainHandStack();
+					ItemStack itemStack2 = itemStack.copy();
+					boolean bl2 = this.player.isUsingEffectiveTool(blockState);
+					itemStack.postMine(this.world, blockState, pos, this.player);
+					if (bl2) {
+						block.afterBreak(this.world, this.player, pos, newState, blockEntity, itemStack2);
+					}
+					info.setReturnValue(true);
+					return;
+				}
+			}
+		}
 	}
-	
-	
+
 }

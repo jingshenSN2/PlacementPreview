@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 public @interface Config {
 
 	// COPY from TechReborn github
-	
+
 	/**
 	 * This the category of the config
 	 *
@@ -26,14 +26,16 @@ public @interface Config {
 	String key() default "";
 
 	/**
-	 * This is a comment that will be supplied along with the config, use this to explain what the config does
+	 * This is a comment that will be supplied along with the config, use this to
+	 * explain what the config does
 	 *
 	 * @return
 	 */
 	String comment() default "";
 
 	/**
-	 * this is the config file name, the default is just config.cgf, use this is you whish to split the config into more than one file.
+	 * this is the config file name, the default is just config.cgf, use this is you
+	 * whish to split the config into more than one file.
 	 *
 	 * @return
 	 */

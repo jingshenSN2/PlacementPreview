@@ -18,18 +18,18 @@ import java.util.Map;
 public class ConfigHandler {
 	// COPY from TechReborn github
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-	
+
 	private final Class clazz;
 	private final String modId;
-	
+
 	public ConfigHandler(Class clazz, String modId) {
 		this.clazz = clazz;
 		this.modId = modId;
 		setup();
 	}
-	
+
 	private void setup() {
-		final File configDir = new File(FabricLoader.getInstance().getConfigDirectory(), modId);
+		final File configDir = new File(FabricLoader.getInstance().getConfigDir().toFile(), modId);
 
 		if (!configDir.exists()) {
 			configDir.mkdirs();
@@ -52,7 +52,7 @@ public class ConfigHandler {
 			readFromJson(configs);
 		}
 
-		//Save the configs
+		// Save the configs
 		for (Map.Entry<String, JsonObject> entry : toJson().entrySet()) {
 			final File configFile = new File(configDir, entry.getKey() + ".json");
 			final String jsonStr = GSON.toJson(entry.getValue());
@@ -63,7 +63,7 @@ public class ConfigHandler {
 			}
 		}
 	}
-	
+
 	private HashMap<Field, Config> getConfigFields() {
 		final HashMap<Field, Config> fieldMap = new HashMap<>();
 		for (Field field : clazz.getDeclaredFields()) {
@@ -131,7 +131,7 @@ public class ConfigHandler {
 			final JsonObject config = configs.get(annotation.config());
 
 			if (config == null) {
-				continue; //Could be possible if a new config is added
+				continue; // Could be possible if a new config is added
 			}
 
 			JsonObject categoryObject = config.getAsJsonObject(annotation.category());
@@ -160,5 +160,5 @@ public class ConfigHandler {
 			}
 		}
 	}
-	
+
 }

@@ -7,11 +7,11 @@ import net.minecraft.block.enums.SlabType;
 import net.minecraft.util.math.BlockPos;
 import sn2.slabhelper.callbacks.ClientCallbackRegistry;
 
-public class ClientSlabHelper implements ClientModInitializer{
-	
+public class ClientSlabHelper implements ClientModInitializer {
+
 	private static HashMap<BlockPos, SlabType> damageRender = new HashMap<>();
 	private static boolean halfMine = false;
-	
+
 	@Override
 	public void onInitializeClient() {
 		// register key binding
@@ -35,5 +35,5 @@ public class ClientSlabHelper implements ClientModInitializer{
 		damageRender.clear();
 		damageRender.put(pos, type);
 	}
-	
+
 }

@@ -19,14 +19,14 @@ import sn2.slabhelper.config.SlabHelperConfig;
 import sn2.slabhelper.item.ItemRegistry;
 
 public class SlabHelper implements ModInitializer {
-	
+
 	public static final String MODID = "slabhelper";
-	public static final String VERSION = "1.3.0";
+	public static final String VERSION = "1.3.1";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 
-	public static Identifier HALFMINE = new Identifier(SlabHelper.MODID, "half");	
+	public static Identifier HALFMINE = new Identifier(SlabHelper.MODID, "half");
 	private static HashMap<UUID, Boolean> enableHalfMine = new HashMap<UUID, Boolean>();
-		
+
 	@Override
 	public void onInitialize() {
 		new ConfigHandler(SlabHelperConfig.class, MODID);
@@ -38,22 +38,22 @@ public class SlabHelper implements ModInitializer {
 		CallbackRegistry.init();
 		LOGGER.info("Slab Helper initialized");
 	}
-	
+
 	public static boolean getHalfMineStatus(PlayerEntity player) {
 		if (enableHalfMine.containsKey(player.getUuid()))
 			return enableHalfMine.get(player.getUuid());
 		return false;
 	}
-	
+
 	public static void setHalfMineStatus(PlayerEntity player, boolean enable) {
 		if (enableHalfMine.containsKey(player.getUuid()))
 			enableHalfMine.replace(player.getUuid(), enable);
 		else
 			enableHalfMine.put(player.getUuid(), enable);
-		MutableText ON = new TranslatableText("message.player.halfmine.on").setStyle(
-				Style.EMPTY.withColor(TextColor.fromRgb(152+251*256+152*256*256)));
-		MutableText OFF = new TranslatableText("message.player.halfmine.off").setStyle(
-				Style.EMPTY.withColor(TextColor.fromRgb(34+34*256+178*256*256)));
-		player.sendMessage(new TranslatableText("message.player.halfmine", enable? ON:OFF), true);
+		MutableText ON = new TranslatableText("message.player.halfmine.on")
+				.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(152 + 251 * 256 + 152 * 256 * 256)));
+		MutableText OFF = new TranslatableText("message.player.halfmine.off")
+				.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(34 + 34 * 256 + 178 * 256 * 256)));
+		player.sendMessage(new TranslatableText("message.player.halfmine", enable ? ON : OFF), true);
 	}
 }

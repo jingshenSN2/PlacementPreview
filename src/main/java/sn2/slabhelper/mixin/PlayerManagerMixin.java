@@ -12,7 +12,7 @@ import sn2.slabhelper.callbacks.PlayerLoginCallback;
 
 @Mixin(PlayerManager.class)
 public class PlayerManagerMixin {
-	
+
 	@Inject(method = "onPlayerConnect", at = @At("TAIL"), cancellable = true)
 	public void login(ClientConnection connection, ServerPlayerEntity player, CallbackInfo info) {
 		PlayerLoginCallback.EVENT.invoker().onLogin(connection, player);
