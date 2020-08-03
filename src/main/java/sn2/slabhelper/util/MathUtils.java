@@ -12,6 +12,15 @@ import net.minecraft.util.math.Vec3d;
 
 public class MathUtils {
 	public static BlockState getNewState(BlockPos pos, PlayerEntity player, BlockState state) {
+		SlabType hitType = getHitType(pos, player, state);
+		if (hitType == SlabType.TOP)
+			state = state.with(SlabBlock.TYPE, SlabType.BOTTOM);
+		else
+			state = state.with(SlabBlock.TYPE, SlabType.TOP);
+		return state;
+	}
+
+	public static SlabType getHitType(BlockPos pos, PlayerEntity player, BlockState state) {
 		Box box = new Box(pos);
 		Vec3d vec3d = player.getCameraPosVec(1);
 		Vec3d vec3d2 = player.getRotationVec(1);
@@ -24,17 +33,16 @@ public class MathUtils {
 		if (relativeY == 0) {
 			// hit at bottom
 			if (hitY >= player.getPos().y + (double) player.getStandingEyeHeight())
-				state = state.with(SlabBlock.TYPE, SlabType.TOP);
+				return SlabType.BOTTOM;
 			// hit at top
 			else
-				state = state.with(SlabBlock.TYPE, SlabType.BOTTOM);
+				return SlabType.TOP;
 		}
 		// hit at y>0.5
 		else if (relativeY >= 0.5)
-			state = state.with(SlabBlock.TYPE, SlabType.BOTTOM);
+			return SlabType.TOP;
 		// hit at y<0.5
 		else
-			state = state.with(SlabBlock.TYPE, SlabType.TOP);
-		return state;
+			return SlabType.BOTTOM;
 	}
 }

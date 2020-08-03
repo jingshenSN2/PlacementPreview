@@ -64,7 +64,7 @@ public class ItemSlabHooker extends Item {
 			return ActionResult.PASS;
 		if (state.get(SlabBlock.TYPE) == SlabType.DOUBLE)
 			return ActionResult.PASS;
-		
+
 		SlabType baseType = state.get(SlabBlock.TYPE);
 		SlabType toType = (baseType == SlabType.TOP) ? SlabType.BOTTOM : SlabType.TOP;
 		int damage = 0;
@@ -97,7 +97,8 @@ public class ItemSlabHooker extends Item {
 				world.getEntities(null, box).forEach(e -> {
 					e.setBoundingBox(e.getBoundingBox().offset(new Vec3d(0, 0.5, 0)));
 					e.moveToBoundingBoxCenter();
-				});;
+				});
+				;
 			}
 			return true;
 		}

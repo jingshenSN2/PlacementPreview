@@ -20,10 +20,10 @@ import sn2.slabhelper.config.SlabHelperConfig;
 
 @Environment(EnvType.CLIENT)
 @Mixin(SlabBlock.class)
-public abstract class SlabBlockMixin {
+public abstract class MixinSlabBlock {
 
 	@Inject(method = "getOutlineShape", at = @At("HEAD"), cancellable = true)
-	public void renderShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context,
+	public void SLABHELPER$SHAPE(BlockState state, BlockView world, BlockPos pos, ShapeContext context,
 			CallbackInfoReturnable<VoxelShape> info) {
 		if (SlabHelperConfig.renderAdditionalEdges && state.get(SlabBlock.TYPE) == SlabType.DOUBLE)
 			// A shape unioned by two half block

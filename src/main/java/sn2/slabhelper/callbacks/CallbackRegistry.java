@@ -1,20 +1,17 @@
 package sn2.slabhelper.callbacks;
 
 import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import sn2.slabhelper.HalfMinePlayerEntity;
 import sn2.slabhelper.SlabHelper;
 
 public class CallbackRegistry {
 	public static void init() {
 
 		ServerSidePacketRegistry.INSTANCE.register(SlabHelper.HALFMINE, (packetContext, attachedData) -> {
-			boolean enable = SlabHelper.getHalfMineStatus(packetContext.getPlayer());
-			if (enable == false) {
-				SlabHelper.setHalfMineStatus(packetContext.getPlayer(), true);
-				SlabHelper.LOGGER.info(packetContext.getPlayer().getEntityName() + " enable Half-Mime mode");
-			} else {
-				SlabHelper.setHalfMineStatus(packetContext.getPlayer(), false);
-				SlabHelper.LOGGER.info(packetContext.getPlayer().getEntityName() + " disable Half-Mime mode");
-			}
+			HalfMinePlayerEntity player = (HalfMinePlayerEntity) packetContext.getPlayer();
+			player.setHalfMine();
+			SlabHelper.LOGGER.info(packetContext.getPlayer().getEntityName() + " change Half-Mime mode to"
+					+ (player.isHalfMine() ? "On" : "Off"));
 		});
 
 	}

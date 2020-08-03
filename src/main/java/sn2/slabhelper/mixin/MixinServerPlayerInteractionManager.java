@@ -17,12 +17,12 @@ import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameMode;
-import sn2.slabhelper.SlabHelper;
+import sn2.slabhelper.HalfMinePlayerEntity;
 import sn2.slabhelper.config.SlabHelperConfig;
 import sn2.slabhelper.util.MathUtils;
 
 @Mixin(ServerPlayerInteractionManager.class)
-public class ServerPlayerInteractionManagerMixin {
+public class MixinServerPlayerInteractionManager {
 
 	@Shadow
 	public ServerWorld world;
@@ -32,12 +32,12 @@ public class ServerPlayerInteractionManagerMixin {
 	private GameMode gameMode;
 
 	@Inject(method = "tryBreakBlock", at = @At("HEAD"), cancellable = true)
-	public void tryBreak(BlockPos pos, CallbackInfoReturnable<Boolean> info) {
+	public void SLABHELPER$TRYBREAK(BlockPos pos, CallbackInfoReturnable<Boolean> info) {
 		BlockState blockState = this.world.getBlockState(pos);
 		if (!this.player.getMainHandStack().getItem().canMine(blockState, this.world, pos, this.player))
 			return;
 		if (blockState.getBlock() instanceof SlabBlock && SlabHelperConfig.halfmining
-				&& blockState.get(SlabBlock.TYPE) == SlabType.DOUBLE && SlabHelper.getHalfMineStatus(this.player)) {
+				&& blockState.get(SlabBlock.TYPE) == SlabType.DOUBLE && ((HalfMinePlayerEntity) player).isHalfMine()) {
 			BlockEntity blockEntity = this.world.getBlockEntity(pos);
 			Block block = blockState.getBlock();
 			if (this.player.isBlockBreakingRestricted(this.world, pos, this.gameMode))

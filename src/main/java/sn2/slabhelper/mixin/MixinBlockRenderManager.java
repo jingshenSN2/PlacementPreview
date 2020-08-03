@@ -14,6 +14,8 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.enums.SlabType;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.block.BlockModelRenderer;
@@ -23,11 +25,12 @@ import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
-import sn2.slabhelper.ClientSlabHelper;
+import sn2.slabhelper.HalfMinePlayerEntity;
+import sn2.slabhelper.util.MathUtils;
 
 @Environment(EnvType.CLIENT)
 @Mixin(BlockRenderManager.class)
-public class BlockRenderManagerMixin {
+public class MixinBlockRenderManager {
 
 	@Shadow
 	private BlockModels models;
@@ -37,11 +40,15 @@ public class BlockRenderManagerMixin {
 	private final Random random = new Random();
 
 	@Inject(method = "renderDamage", at = @At("HEAD"), cancellable = true)
-	public void onDamage(BlockState state, BlockPos pos, BlockRenderView world, MatrixStack matrix,
+	public void SLABHELPER$DAMAGE(BlockState state, BlockPos pos, BlockRenderView world, MatrixStack matrix,
 			VertexConsumer vertexConsumer, CallbackInfo info) {
-		if (ClientSlabHelper.isHalfMine() && state.getBlock() instanceof SlabBlock
-				&& state.get(SlabBlock.TYPE) == SlabType.DOUBLE) {
-			SlabType type = ClientSlabHelper.getDamageRender(pos);
+		if (state.getBlock() instanceof SlabBlock && state.get(SlabBlock.TYPE) == SlabType.DOUBLE) {
+			ClientPlayerEntity player = MinecraftClient.getInstance().player;
+			if (player == null)
+				return;
+			if (!((HalfMinePlayerEntity) player).isHalfMine())
+				return;
+			SlabType type = MathUtils.getHitType(pos, player, state);
 			if (type != null)
 				state = state.with(SlabBlock.TYPE, type);
 			if (state.getRenderType() == BlockRenderType.MODEL) {

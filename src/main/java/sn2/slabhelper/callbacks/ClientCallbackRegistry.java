@@ -6,7 +6,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.minecraft.network.PacketByteBuf;
-import sn2.slabhelper.ClientSlabHelper;
+import sn2.slabhelper.HalfMinePlayerEntity;
 import sn2.slabhelper.SlabHelper;
 import sn2.slabhelper.SlabHelperKey;
 
@@ -16,7 +16,7 @@ public class ClientCallbackRegistry {
 		// send half-mine mode change packet to server
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			if (SlabHelperKey.halfmine.wasPressed()) {
-				ClientSlabHelper.setHalfMine();
+				((HalfMinePlayerEntity) client.player).setHalfMine();
 				PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
 				ClientSidePacketRegistry.INSTANCE.sendToServer(SlabHelper.HALFMINE, passedData);
 			}
