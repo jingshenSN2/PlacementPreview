@@ -22,7 +22,7 @@ public class SlabHelper implements ModInitializer {
 	public void onInitialize() {
 		new ConfigHandler(SlabHelperConfig.class, MODID);
 		// check update
-		VersionCheck.init();
+		VersionCheck.check();
 		// register item
 		ItemRegistry.init();
 		// register events

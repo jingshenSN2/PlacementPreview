@@ -38,7 +38,7 @@ public class MixinBlockRenderManager {
 	private BlockModelRenderer blockModelRenderer;
 	@Shadow
 	private final Random random = new Random();
-
+	
 	@Inject(method = "renderDamage", at = @At("HEAD"), cancellable = true)
 	public void SLABHELPER$DAMAGE(BlockState state, BlockPos pos, BlockRenderView world, MatrixStack matrix,
 			VertexConsumer vertexConsumer, CallbackInfo info) {
