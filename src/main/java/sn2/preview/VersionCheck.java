@@ -1,4 +1,4 @@
-package sn2.slabhelper;
+package sn2.preview;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,12 +10,12 @@ public class VersionCheck {
 		BufferedReader in = null;
 		String version = null;
 		try {
-			updateURL = new URL("https://raw.githubusercontent.com/jingshenSN2/SlabHelper/master/VERSION");
+			updateURL = new URL("https://raw.githubusercontent.com/jingshenSN2/Preview/master/VERSION");
 			in = new BufferedReader(new InputStreamReader(updateURL.openStream()));
 			version = in.readLine();
 		} catch (Exception e) {
 			// fail to connect
-			SlabHelper.LOGGER.info("Fail to check update! Please check your network connection.");
+			PlacementPreview.LOGGER.info("Fail to check update! Please check your network connection.");
 		} finally {
 			if (in != null) {
 				try {
@@ -25,10 +25,10 @@ public class VersionCheck {
 			}
 		}
 		// need update
-		if (version != null && !version.equals(SlabHelper.VERSION)) {
+		if (version != null && !version.equals(PlacementPreview.VERSION)) {
 			String update = "Update " + version
-					+ " found! Download the latest version at https://www.curseforge.com/minecraft/mc-mods/slab-helper";
-			SlabHelper.LOGGER.info(update);
+					+ " found! Download the latest version at https://www.curseforge.com/minecraft/mc-mods/preview";
+			PlacementPreview.LOGGER.info(update);
 			return version;
 		}
 		return null;

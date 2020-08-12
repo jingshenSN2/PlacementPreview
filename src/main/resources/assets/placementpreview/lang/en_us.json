@@ -1,0 +1,9 @@
+{
+  "category.placementpreview.key": "Placement Preview",
+  "key.placementpreview.preview": "Placement Preview",
+  "message.player.update": "[Placement Preview] Update%s found! Click [%s] to check.",
+  "message.player.update.here": "HERE",
+  "message.player.preview": "[Placement Preview] Placement Preview Mode %s",
+  "message.player.preview.on": "ON",
+  "message.player.preview.off": "OFF"
+}

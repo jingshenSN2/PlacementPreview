@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "slabhelper:item/diamond_slab_hooker"
-  }
-}

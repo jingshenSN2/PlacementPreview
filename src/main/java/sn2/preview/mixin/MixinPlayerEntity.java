@@ -1,4 +1,4 @@
-package sn2.slabhelper.mixin;
+package sn2.preview.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -9,27 +9,27 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.text.TranslatableText;
-import sn2.slabhelper.HalfMinePlayerEntity;
+import sn2.preview.PreviewPlayerEntity;
 
 @Mixin(PlayerEntity.class)
-public abstract class MixinPlayerEntity implements HalfMinePlayerEntity {
+public abstract class MixinPlayerEntity implements PreviewPlayerEntity {
 	@Shadow
 	public abstract void sendMessage(Text message, boolean actionBar);
 
-	private boolean isHalfMine = false;
+	private boolean isPreview = false;
 
 	@Override
-	public boolean isHalfMine() {
-		return isHalfMine;
+	public boolean isPreview() {
+		return isPreview;
 	}
 
 	@Override
-	public void setHalfMine() {
-		isHalfMine = !isHalfMine;
-		MutableText ON = new TranslatableText("message.player.halfmine.on")
+	public void setPreview() {
+		isPreview = !isPreview;
+		MutableText ON = new TranslatableText("message.player.preview.on")
 				.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(152 + 251 * 256 + 152 * 256 * 256)));
-		MutableText OFF = new TranslatableText("message.player.halfmine.off")
+		MutableText OFF = new TranslatableText("message.player.preview.off")
 				.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(34 + 34 * 256 + 178 * 256 * 256)));
-		this.sendMessage(new TranslatableText("message.player.halfmine", isHalfMine ? ON : OFF), true);
+		this.sendMessage(new TranslatableText("message.player.preview", isPreview ? ON : OFF), true);
 	}
 }
