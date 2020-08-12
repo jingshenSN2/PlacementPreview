@@ -55,11 +55,12 @@ public class MixinMinecraftClient {
 		// Check function enabled
 		if (!((PreviewPlayerEntity) player).isPreview())
 			return;
-		
+		// Get the target block
 		HitResult result = crosshairTarget;
 		if (result.getType() != HitResult.Type.BLOCK)
 			return;
 		BlockPos pos = new BlockPos(result.getPos());
+		// Get the placement result
 		ItemStack stack = player.getMainHandStack();
 		if (!(stack.getItem() instanceof BlockItem))
 			return;
@@ -67,12 +68,14 @@ public class MixinMinecraftClient {
 		if (!context.canPlace())
 			return;
 		BlockState state = ((BlockItem) stack.getItem()).getBlock().getPlacementState(context);
-
+		// Check place pos is not the same as target pos(Means cannot place)
 		if (!pos.equals(context.getBlockPos()))
 			return;
+		// Calculate the yaw and pitch of player
 		float tickDelta = renderTickCounter.tickDelta;
 	    float pitch = player.getPitch(tickDelta);
 	    float yaw = player.getYaw(tickDelta);
+	    // Prepare MatrixStack and VertexConsumer for the renderBlock method
 		Camera camera = gameRenderer.getCamera();
 	    RenderLayer renderLayer = RenderLayers.getBlockLayer(state);
 	    VertexConsumer consumer = bufferBuilders.getEntityVertexConsumers().getBuffer(renderLayer);
@@ -80,12 +83,10 @@ public class MixinMinecraftClient {
 		matrix.push();
 		matrix.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(pitch));
 	    matrix.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(yaw + 180.0F));
+	    // TODO: camera.getPos works not correctly when player is moving
 		matrix.translate((double)pos.getX() - camera.getPos().x, (double)pos.getY() - camera.getPos().y, (double)pos.getZ() - camera.getPos().z);
-		//blockRenderManager.renderBlock(state, pos, player.world, matrix, consumer, true, new Random());
-		OutlineVertexConsumerProvider pro = bufferBuilders.getOutlineVertexConsumers();
-		pro.setColor(255, 0, 0, 0);
-	    VertexConsumer consumer2 = pro.getBuffer(renderLayer);
-		blockRenderManager.renderBlock(state, pos, player.world, matrix, consumer2, true, new Random());
+		// Render the preview block
+		blockRenderManager.renderBlock(state, pos, player.world, matrix, consumer, true, new Random());
 		matrix.pop();
 	}
 }
