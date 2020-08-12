@@ -67,6 +67,7 @@ public class MixinMinecraftClient {
 		ItemPlacementContext context = new ItemPlacementContext(player, player.getActiveHand(), stack, (BlockHitResult) result);
 		if (!context.canPlace())
 			return;
+		// TODO: Wrong state for railblock
 		BlockState state = ((BlockItem) stack.getItem()).getBlock().getPlacementState(context);
 		// Check place pos is not the same as target pos(Means cannot place)
 		if (!pos.equals(context.getBlockPos()))
