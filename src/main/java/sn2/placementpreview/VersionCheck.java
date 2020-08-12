@@ -1,4 +1,4 @@
-package sn2.preview;
+package sn2.placementpreview;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

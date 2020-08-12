@@ -1,4 +1,4 @@
-package sn2.preview;
+package sn2.placementpreview;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

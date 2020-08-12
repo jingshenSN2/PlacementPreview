@@ -1,10 +1,10 @@
-package sn2.preview.callbacks;
+package sn2.placementpreview.callbacks;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import sn2.preview.PreviewPlayerEntity;
-import sn2.preview.KeyBinds;
+import sn2.placementpreview.KeyBinds;
+import sn2.placementpreview.PreviewPlayerEntity;
 
 public class ClientCallbackRegistry {
 	@Environment(EnvType.CLIENT)

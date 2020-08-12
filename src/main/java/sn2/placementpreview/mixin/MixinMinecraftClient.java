@@ -1,4 +1,4 @@
-package sn2.preview.mixin;
+package sn2.placementpreview.mixin;
 
 import java.util.Random;
 
@@ -31,7 +31,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import sn2.preview.PreviewPlayerEntity;
+import sn2.placementpreview.PreviewPlayerEntity;
 
 @Mixin(MinecraftClient.class)
 public class MixinMinecraftClient {

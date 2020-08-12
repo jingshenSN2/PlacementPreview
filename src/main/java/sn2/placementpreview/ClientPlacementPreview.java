@@ -1,7 +1,7 @@
-package sn2.preview;
+package sn2.placementpreview;
 
 import net.fabricmc.api.ClientModInitializer;
-import sn2.preview.callbacks.ClientCallbackRegistry;
+import sn2.placementpreview.callbacks.ClientCallbackRegistry;
 
 public class ClientPlacementPreview implements ClientModInitializer {
 

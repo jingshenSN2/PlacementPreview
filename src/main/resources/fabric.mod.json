@@ -19,10 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "sn2.preview.PlacementPreview"
+      "sn2.placementpreview.PlacementPreview"
     ],
     "client": [
-      "sn2.preview.ClientPlacementPreview"
+      "sn2.placementpreview.ClientPlacementPreview"
     ]
   },
   "mixins": [
