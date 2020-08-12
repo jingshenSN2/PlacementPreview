@@ -86,6 +86,7 @@ public class MixinMinecraftClient {
 	    // TODO: camera.getPos works not correctly when player is moving
 		matrix.translate((double)pos.getX() - camera.getPos().x, (double)pos.getY() - camera.getPos().y, (double)pos.getZ() - camera.getPos().z);
 		// Render the preview block
+		// TODO: Can't change the alpha value of the render
 		blockRenderManager.renderBlock(state, pos, player.world, matrix, consumer, true, new Random());
 		matrix.pop();
 	}
